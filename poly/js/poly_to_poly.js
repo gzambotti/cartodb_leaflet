@@ -16,15 +16,14 @@
 **/
 
 window.onload = function() {
-	var bounds;
-	var highlightStyle = {color: "#ff0000", weight: 2, opacity: 0.6, fillOpacity: 0.1, fillColor: "#ff0000"}
 		
 	var map = L.map('main').setView([42.3, -71.6], 10);	
 	
 	var layer = new L.StamenTileLayer("toner");
 	map.addLayer(layer);
-	var centerLayer = {color:'#088A08', weight: 2, fill: true, fillColor:"#00ff00", fillOpacity: .4}
-	var adjLayer = {color:'#B40431', weight: 2, fill: true, fillColor:"#FF0040", fillOpacity: .6}		
+	
+	var inLayer = {color:'#ffff00', weight: 1, fill: true, fillColor:"#ffff00", fillOpacity: .6}
+	var adjLayer = {color:'#000080', weight: 2, fill: true, fillColor:"#0000ff", fillOpacity: .7}		
 	var boundaryLayer, boundaryLayer1;	
 	var pColor = '', bcolor = '', coords= '', sparePopup;
 	sparePopup = new L.Popup({"maxWidth":400});
@@ -36,7 +35,7 @@ window.onload = function() {
 		$.getJSON("http://gz.cartodb.com/api/v1/sql?q=" + q + "&format=geojson&callback=?",
 		function(geojson) {
 			console.log(geojson)
-			boundaryLayer1 = L.geoJson(geojson,{style: centerLayer});
+			boundaryLayer1 = L.geoJson(geojson,{style: inLayer});
 			boundaryLayer1.addTo(map);				
 		})
 		
